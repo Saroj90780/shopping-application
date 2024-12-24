@@ -1,0 +1,32 @@
+.title{
+color: rgb(3, 181, 139);
+font-size: 36px;
+font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+font-weight: 650;
+}
+.search-bar{
+    border: 1px solid gray;
+    border-radius: 24px;
+    height: 40px;
+    gap: 10px;
+    align-items: center;
+    padding-left: 13px;
+}
+.search-bar input{
+    border: none;
+    outline: none;
+    width: 100%;
+    background: transparent;
+}
+.bi-search{
+    text-align: center;
+    
+}
+.side-nav-bar{
+    font-size: 22px;
+}
+.nav-bar{
+    background-color:rgb(142, 245, 193) ;
+    height: 75px;
+    
+}

@@ -1,0 +1,108 @@
+[
+    {
+        "id": 1,
+        "item-name": "Brown Jacket",
+        "image": "../image/women's cloth/Starting Fall With A Beautiful Color Palette _ Jacket Society in 2020 _ 60 fashion, Fashion, Over 60.jpeg",
+        "price": 1499,
+        "category": "Women's Clothing",
+        "description": "A beautiful brown jacket with a unique color palette. Perfect for fall and winter",
+        "rating": {
+            "rate": 4.5,
+            "ratings": 54320,
+            "reviews": 4502
+        },
+        "offers": [
+            "Bank OfferGrab ₹15 Off on Prepaid PaymentT&C",
+            "Bank Offer5% Unlimited Cashback on Flipkart Axis Bank Credit CardT&C",
+            "Bank Offer12% off up to ₹1000 on HDFC Bank Pixel Credit Card EMI on 3 months tenure. Min. Txn Value: ₹7,500T&C",
+            "Combo OfferBuy 2 items save ₹50; Buy 3 or more save ₹100See all productsT&C",
+            "Special PriceGet at flat ₹279T&C"
+        ],
+        "return-policy": "30-Day Return Policy"
+    },
+    {
+        "id": 2,
+        "item-name": "Gray Hoodies",
+        "image": "../image/women's cloth/6a81a7bc-0aae-480c-8995-996cc8251713.jpeg",
+        "price": 1399,
+        "category": "Women's Clothing",
+        "description": "A beautiful Gray Hoodies with a unique color.Perfect for fall and winter",
+        "rating": {
+            "rate": 4.1,
+            "ratings": 55620,
+            "reviews": 3402
+        },
+        "offers": [
+            "Bank OfferGrab ₹15 Off on Prepaid PaymentT&C",
+            "Bank Offer5% Unlimited Cashback on Flipkart Axis Bank Credit CardT&C",
+            "Bank Offer12% off up to ₹1000 on HDFC Bank Pixel Credit Card EMI on 3 months tenure. Min. Txn Value: ₹7,500T&C",
+            "Combo OfferBuy 2 items save ₹50; Buy 3 or more save ₹100See all productsT&C",
+            "Special PriceGet at flat ₹279T&C"
+        ],
+        "return-policy": "30-Day Return Policy"
+    },
+    {
+        "id": 3,
+        "item-name": "Winter Jacket",
+        "image": "../image/women's cloth/9ce265a7-d061-471c-b05a-94982741e9a8.jpeg",
+        "price": 1349,
+        "category": "Women's Clothing",
+        "description": "A square box printed winter jacket with a unique color.Perfect for fall and winter",
+        "rating": {
+            "rate": 4.0,
+            "ratings": 54520,
+            "reviews": 3902
+        },
+        "offers": [
+            "Bank OfferGrab ₹15 Off on Prepaid PaymentT&C",
+            "Bank Offer5% Unlimited Cashback on Flipkart Axis Bank Credit CardT&C",
+            "Bank Offer12% off up to ₹1000 on HDFC Bank Pixel Credit Card EMI on 3 months tenure. Min. Txn Value: ₹7,500T&C",
+            "Combo OfferBuy 2 items save ₹50; Buy 3 or more save ₹100See all productsT&C",
+            "Special PriceGet at flat ₹279T&C"
+        ],
+        "return-policy": "30-Day Return Policy"
+    },
+    {
+        "id": 4,
+        "item-name": "Gray Hoodies",
+        "image": "../image/women's cloth/15 Tips para hacer de tu t-shirt favorita la prenda estrella de tu look.jpeg",
+        "price": 1199,
+        "category": "Women's Clothing",
+        "description": "A baby pink smooth pure cotton jacket ",
+        "rating": {
+            "rate": 4.7,
+            "ratings": 59620,
+            "reviews": 3421
+        },
+        "offers": [
+            "Bank OfferGrab ₹15 Off on Prepaid PaymentT&C",
+            "Bank Offer5% Unlimited Cashback on Flipkart Axis Bank Credit CardT&C",
+            "Bank Offer12% off up to ₹1000 on HDFC Bank Pixel Credit Card EMI on 3 months tenure. Min. Txn Value: ₹7,500T&C",
+            "Combo OfferBuy 2 items save ₹50; Buy 3 or more save ₹100See all productsT&C",
+            "Special PriceGet at flat ₹279T&C"
+        ],
+        "return-policy": "30-Day Return Policy"
+    },
+    {
+        "id": 5,
+        "item-name": "White Jacket ",
+        "image": "../image/women's cloth/20 great work_office outfits for women on pinterest - Hephzee.jpeg",
+        "price": 1299,
+        "category": "Women's Clothing",
+        "description": "A square box printed winter jacket with a unique color.Perfect for fall and winter",
+        "rating": {
+            "rate": 4.3,
+            "ratings": 50020,
+            "reviews": 10                                                 02
+        },
+        "offers": [
+            "Bank OfferGrab ₹15 Off on Prepaid PaymentT&C",
+            "Bank Offer5% Unlimited Cashback on Flipkart Axis Bank Credit CardT&C",
+            "Bank Offer12% off up to ₹1000 on HDFC Bank Pixel Credit Card EMI on 3 months tenure. Min. Txn Value: ₹7,500T&C",
+            "Combo OfferBuy 2 items save ₹50; Buy 3 or more save ₹100See all productsT&C",
+            "Special PriceGet at flat ₹279T&C"
+        ],
+        "return-policy": "30-Day Return Policy"
+    },
+
+]
