@@ -30,3 +30,11 @@ font-weight: 650;
     height: 75px;
     
 }
+.icon-bar{
+    box-shadow: 0px 10px 20px -15px rgb(105, 105, 105);
+    transition: 0.6s;
+    transform: translateY(-10px);
+    margin-right: -10px;
+    margin-left: -10px;
+    
+}

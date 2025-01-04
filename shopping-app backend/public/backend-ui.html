@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./backend-ui.css">
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+    <script>
+        function contentShow(content) {
+            document.getElementById(`${content}`).style.display = "block";
+            if (content === "Dashboard") {
+                document.getElementById(`Dashboard`).style.display = "block";
+                document.getElementById(`Add-Products`).style.display = "none";
+                document.getElementById(`Orders`).style.display = "none";
+                document.getElementById(`Reports`).style.display = "none";
+                document.getElementById(`Users`).style.display = "none";
+                document.getElementById(`Abouts`).style.display = "none";
+
+
+            }
+            else {
+                document.getElementById(`Dashboard`).style.display = "none";
+            }
+        }
+        function functionLoad() {
+            document.getElementById("Dashboard").style.display = "block";
+            dataload();
+            addProduct()
+        }
+        function addProduct() {
+
+            console.log(document.getElementById("category").value);
+            var productForm = document.getElementById("addProduct")
+            console.log("padhi")
+            productForm.addEventListener('click', (e) => {
+                console.log("spadhi")
+                e.preventDefault();
+                const category = document.getElementById('category').value;
+                const price = document.getElementById('price').value;
+                const productName = document.getElementById('productName').value;
+                const quantity = document.getElementById('quantity').value;
+                const status = document.getElementById('status').value;
+                const description = document.getElementById('description').value;
+                const img = document.getElementById('image').value;
+                const bankOffer = document.getElementById('bankOffer').checked;
+                const axisOffer = document.getElementById('axisOffer').checked;
+                const hdfcOffer = document.getElementById('hdfcOffer').checked
+                const specialOffer = document.getElementById('specialOffer').checked.value;
+                console.log(bankOffer.value)
+
+
+                fetch('http://127.0.0.1:4001/submit', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ category, price, productName, quantity, status, description, img, bankOffer, axisOffer, hdfcOffer,specialOffer })
+                })
+                    .then(response => response.json())
+                    .then(product => {
+                        console.log(product)
+                        addProductToList(product); // Add product to the list immediately
+                    });
+                productForm.reset();
+
+            });
+        }
+        function addProductToList(product) {
+            var tr = document.createElement("tr");
+            var tdname = document.createElement("td");
+            var tdprice = document.createElement("td");
+            var tdquantity = document.createElement("td");
+            var tdstatus = document.createElement("td");
+            var tdaction = document.createElement("td");
+            console.log("sarojpadhiIII")
+            console.log(product)
+            console.log(product[product.length - 1])
+
+            tdname.innerHTML = product[product.length - 1].product;
+            tdprice.innerHTML = product[product.length - 1].price;
+            tdquantity.innerHTML = product[product.length - 1].quantity;
+            tdstatus.innerHTML = product[product.length - 1].status;
+
+            tr.appendChild(tdname);
+            tr.appendChild(tdprice);
+            tr.appendChild(tdquantity);
+            tr.appendChild(tdstatus);
+
+            document.querySelector("tbody").appendChild(tr)
+        }
+
+        function dataload() {
+            fetch(`http://127.0.0.1:4001`)
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);
+                    data.map(datas => {
+                        var tr = document.createElement("tr");
+                        var tdname = document.createElement("td");
+                        var tdprice = document.createElement("td");
+                        var tdquantity = document.createElement("td");
+                        var tdstatus = document.createElement("td");
+                        var tdaction = document.createElement("td");
+
+
+                        tdname.innerHTML = datas.product;
+                        tdprice.innerHTML = datas.price;
+                        tdquantity.innerHTML = datas.quantity;
+                        tdstatus.innerHTML = datas.status;
+
+                        tr.appendChild(tdname);
+                        tr.appendChild(tdprice);
+                        tr.appendChild(tdquantity);
+                        tr.appendChild(tdstatus);
+
+                        document.querySelector("tbody").appendChild(tr)
+                    })
+                })
+                .catch(error => console.error(error));
+        }
+    </script>
+    <!-- <script src="./backend-ui.js" type="text/javascript"></script>  -->
+</head>
+
+
+<body class="container-fluid" onload="functionLoad()">
+    <div class="d-flex justify-content-between admin-nav-bar">
+        <div class="d-flex ">
+            <div class="admin-title">Welcome Admin</div>
+            <div class="order">Order <span class="bi bi-bag-check"></span></div>
+        </div>
+        <div class="d-flex gap-5">
+            <div class="bi bi-bell-fill"></div>
+            <div class="log-img d-flex justify-content-between">
+                <div class="icon">S</div><span class="icon-name">saroj</span>
+            </div>
+            <div class="bi bi-three-dots-vertical"></div>
+        </div>
+    </div>
+    <section>
+        <div class="main-section row">
+            <div class="admin-content bg-white col-2">
+                <div class="title">shopCrazze</div>
+                <div class="content">
+                    <div class="content-item" onclick="contentShow('Dashboard')" value="Dashboard">Dashboard<span
+                            class="bi bi-chevron-right"></span></div>
+                    <div class="content-item" onclick="contentShow('Orders')" value="Orders">Orders <span
+                            class="bi bi-chevron-right"></span></div>
+                    <div class="content-item" onclick="contentShow('Add-Products')" value="Add-Products">Add
+                        Products<span class="bi bi-chevron-right"></span></div>
+                    <div class="content-item" onclick="contentShow('Reports')" value="Reports">Reports<span
+                            class="bi bi-chevron-right"></span></div>
+                    <div class="content-item" onclick="contentShow('Users')" value="Users">Users<span
+                            class="bi bi-chevron-right"></span></div>
+                    <div class="content-item" onclick="contentShow('Abouts')" value="Abouts">Abouts<span
+                            class="bi bi-chevron-right"></span></div>
+                </div>
+            </div>
+            <div class="col-7 bg-white " id="Dashboard">
+                <div class="content-title">Dashboard</div>
+                <table class="table table-hover table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>Product Name</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody class="product-t-body">
+
+                    </tbody>
+
+                </table>
+            </div>
+            <div class=" col-7 bg-white " id="Add-Products">
+                <div class="content-title d-block">Add Products</div>
+                <div class="input-div">
+                    <div class="d-flex gap-5">
+                        <div>
+                            <label for="category" class="label-title">Category</label>
+                            <br>
+                            <select name="category" id="category" class="product-details" name="category">
+                                <option value="Men's cloth">Men's cloth</option>
+                                <option value="Women's cloth">Women's cloth</option>
+                                <option value="Kids cloth">Kids cloth</option>
+                                <option value="shoes">shoes</option>
+                                <option value="appliances">Aplliances</option>
+                                <option value="electronics">electronics</option>
+                                <option value="Mobiles">mobiles</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="ProductName" class="label-title">Product Name</label>
+                            <br>
+                            <input type="text" placeholder="Product name" class="product-details" id="productName"
+                                name="productName">
+                        </div>
+                    </div>
+                    <div class="d-flex gap-5">
+                        <div>
+                            <label for="price" class="label-title">Price</label>
+                            <br>
+                            <input type="number" placeholder="Price" class="product-details" id="price" name="price">
+                        </div>
+                        <div>
+                            <label for="quantity" class="label-title">Quantity</label>
+                            <br>
+                            <input type="number" placeholder="Quantity" class="product-details" value="" name="quantity"
+                                id="quantity">
+                        </div>
+                        <div>
+                            <label for="status" class="label-title">Status</label>
+                            <br>
+                            <select name="status" id="status" class="product-details" name="status">
+                                <option value="Available">Available</option>
+                                <option value="Not Available">Not Available</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="d-flex gap-5">
+                        <div>
+                            <label for="description" class="label-title">Description</label>
+                            <br>
+                            <textarea name="description" id="description" class="product-details"
+                                name="description"></textarea>
+                        </div>
+                        <div>
+                            <label for="image" class="label-title">Image path</label>
+                            <br>
+                            <input type="" name="image" id="image" class="product-details" value="" name="img">
+                        </div>
+                    </div>
+                    <div class="d-flex gap-5">
+                        <div>
+                            <label for="offers" class="label-title">Offers</label>
+                            <br>
+                            <input type="checkbox" placeholder="offers" class="inputs" id="bankOffer"
+                             name="bankOffer">
+                            <label for="bankOffer">Bank OfferGrab ₹15 Off on Prepaid PaymentT&C</label>
+                            <br>
+                            <input type="checkbox" placeholder="offers" class="inputs" id="axisOffer"
+                                name="axisOffer">
+                            <label for="axisOffer">Bank Offer5% Unlimited Cashback on Flipkart Axis Bank Credit
+                                CardT&C</label>
+                            <br>
+                            <input type="checkbox" placeholder="offers" class="inputs" id="hdfcOffer"
+                                name="hdfcOffer">
+                            <label for="hdfcOffer">Bank Offer12% off up to ₹1000 on HDFC Bank Pixel Credit Card
+                                EMI on 3 months tenure. Min.</label>
+                            <br>
+                            <input type="checkbox" placeholder="offers" class="inputs" id="specialOffer"
+                                name="specialOffer">
+                            <label for="specialOffer">Special PriceGet at flat ₹279T&C</label>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary" type="submit" id="addProduct">Add Product</button>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>
+
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="./backend-ui.css">
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+    <script>
+        function contentShow(content) {
+            document.getElementById(`${content}`).classList.remove('d-none');
+            document.getElementById(`${content}`).classList.add('d-block');
+            
+            const sections = ['Dashboard', 'Orders', 'Add-Products', 'Reports', 'Users', 'Abouts'];
+            sections.forEach(section => {
+                if (section !== content) {
+                    document.getElementById(section).classList.remove('d-block');
+                    document.getElementById(section).classList.add('d-none');
+                }
+            });
+        }
+
+        function functionLoad() {
+            document.getElementById("Dashboard").classList.remove('d-none');
+            document.getElementById("Dashboard").classList.add('d-block');
+            dataload();
+        }
+
+        function addProduct() {
+            const productForm = document.getElementById("product-form");
+            productForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+
+                // Get form values
+                const category = document.getElementById('category').value;
+                const price = document.getElementById('price').value;
+                const productName = document.getElementById('productName').value;
+                const quantity = document.getElementById('quantity').value;
+                const status = document.getElementById('status').value;
+                const description = document.getElementById('description').value;
+                const image = document.getElementById('image').value;
+                const bankOffer = document.getElementById('bank-offer').checked;
+                const axisOffer = document.getElementById('axis-bank-offer').checked;
+                const hdfcOffer = document.getElementById('hdfc-bank-offer').checked;
+                const specialOffer = document.getElementById('special-offer').checked;
+
+                // Send POST request to backend
+                fetch('http://127.0.0.1:4001/submit', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ category, price, productName, quantity, status, description, image, bankOffer, axisOffer, hdfcOffer, specialOffer })
+                })
+                    .then(response => response.json())
+                    .then(product => {
+                        addProductToList(product); // Add product to the list immediately
+                    })
+                    .catch(error => console.error('Error adding product:', error));
+
+                productForm.reset(); // Reset the form after submission
+            });
+        }
+
+        function addProductToList(product) {
+            var tr = document.createElement("tr");
+            var tdname = document.createElement("td");
+            var tdprice = document.createElement("td");
+            var tdquantity = document.createElement("td");
+            var tdstatus = document.createElement("td");
+
+            tdname.innerHTML = product.productName;
+            tdprice.innerHTML = product.price;
+            tdquantity.innerHTML = product.quantity;
+            tdstatus.innerHTML = product.status;
+
+            tr.appendChild(tdname);
+            tr.appendChild(tdprice);
+            tr.appendChild(tdquantity);
+            tr.appendChild(tdstatus);
+
+            document.querySelector("tbody").appendChild(tr);
+        }
+
+        function dataload() {
+            fetch('http://127.0.0.1:4001')
+                .then(response => response.json())
+                .then(data => {
+                    data.forEach(datas => {
+                        var tr = document.createElement("tr");
+                        var tdname = document.createElement("td");
+                        var tdprice = document.createElement("td");
+                        var tdquantity = document.createElement("td");
+                        var tdstatus = document.createElement("td");
+
+                        tdname.innerHTML = datas.productName;
+                        tdprice.innerHTML = datas.price;
+                        tdquantity.innerHTML = datas.quantity;
+                        tdstatus.innerHTML = datas.status;
+
+                        tr.appendChild(tdname);
+                        tr.appendChild(tdprice);
+                        tr.appendChild(tdquantity);
+                        tr.appendChild(tdstatus);
+
+                        document.querySelector("tbody").appendChild(tr);
+                    });
+                })
+                .catch(error => console.error('Error loading data:', error));
+        }
+    </script>
+</head>
+
+<body class="container-fluid" onload="functionLoad()">
+    <div class="d-flex justify-content-between admin-nav-bar">
+        <div class="d-flex ">
+            <div class="admin-title">Welcome Admin</div>
+            <div class="order">Order <span class="bi bi-bag-check"></span></div>
+        </div>
+        <div class="d-flex gap-5">
+            <div class="bi bi-bell-fill"></div>
+            <div class="log-img d-flex justify-content-between">
+                <div class="icon">S</div><span class="icon-name">Saroj</span>
+            </div>
+            <div class="bi bi-three-dots-vertical"></div>
+        </div>
+    </div>
+
+    <section>
+        <div class="main-section row">
+            <div class="admin-content bg-white col-2">
+                <div class="title">shopCrazze</div>
+                <div class="content">
+                    <div class="content-item" onclick="contentShow('Dashboard')">Dashboard<span class="bi bi-chevron-right"></span></div>
+                    <div class="content-item" onclick="contentShow('Orders')">Orders <span class="bi bi-chevron-right"></span></div>
+                    <div class="content-item" onclick="contentShow('Add-Products')">Add Products<span class="bi bi-chevron-right"></span></div>
+                    <div class="content-item" onclick="contentShow('Reports')">Reports<span class="bi bi-chevron-right"></span></div>
+                    <div class="content-item" onclick="contentShow('Users')">Users<span class="bi bi-chevron-right"></span></div>
+                    <div class="content-item" onclick="contentShow('Abouts')">Abouts<span class="bi bi-chevron-right"></span></div>
+                </div>
+            </div>
+
+            Dashboard Section -->
+<!-- <div class="col-7 bg-white d-none" id="Dashboard">
+    <div class="content-title">Dashboard</div>
+    <table class="table table-hover table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Product Name</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody class="product-t-body"></tbody>
+    </table>
+</div>
+
+ Add Products Section -->
+<!-- <div class="col-7 bg-white d-none" id="Add-Products">
+    <div class="content-title d-block">Add Products</div>
+    <form id="product-form">
+        <div class="input-div">
+            <div class="d-flex gap-5">
+                <div>
+                    <label for="category" class="label-title">Category</label><br>
+                    <select name="category" id="category" class="product-details">
+                        <option value="Men's cloth">Men's cloth</option>
+                        <option value="Women's cloth">Women's cloth</option>
+                        <option value="Kids cloth">Kids cloth</option>
+                        <option value="shoes">Shoes</option>
+                        <option value="appliances">Appliances</option>
+                        <option value="electronics">Electronics</option>
+                        <option value="Mobiles">Mobiles</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="productName" class="label-title">Product Name</label><br>
+                    <input type="text" placeholder="Product name" class="product-details" id="productName"
+                        name="productName" required>
+                </div>
+            </div>
+
+            <div class="d-flex gap-5">
+                <div>
+                    <label for="price" class="label-title">Price</label><br>
+                    <input type="number" placeholder="Price" class="product-details" id="price" name="price" required>
+                </div>
+                <div>
+                    <label for="quantity" class="label-title">Quantity</label><br>
+                    <input type="number" placeholder="Quantity" class="product-details" id="quantity" name="quantity"
+                        required>
+                </div>
+                <div>
+                    <label for="status" class="label-title">Status</label><br>
+                    <select name="status" id="status" class="product-details" name="status" required>
+                        <option value="Available">Available</option>
+                        <option value="Not Available">Not Available</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="d-flex gap-5">
+                <div>
+                    <label for="description" class="label-title">Description</label><br>
+                    <textarea name="description" id="description" class="product-details"></textarea>
+                </div>
+                <div>
+                    <label for="image" class="label-title">Image path</label><br>
+                    <input type="text" name="image" id="image" class="product-details" required>
+                </div>
+            </div>
+
+            <div class="d-flex gap-5">
+                <div>
+                    <label for="offers" class="label-title">Offers</label><br>
+                    <input type="checkbox" class="inputs" id="bank-offer" name="bankOffer"><label for="bank-offer">Bank
+                        Offer</label><br>
+                    <input type="checkbox" class="inputs" id="axis-bank-offer" name="axisOffer"><label
+                        for="axis-bank-offer">Axis Bank Offer</label><br>
+                    <input type="checkbox" class="inputs" id="hdfc-bank-offer" name="hdfcOffer"><label
+                        for="hdfc-bank-offer">HDFC Bank Offer</label><br>
+                    <input type="checkbox" class="inputs" id="special-offer" name="specialOffer"><label
+                        for="special-offer">Special Offer</label><br>
+                </div>
+            </div>
+            <div class="text-end">
+                <button class="btn btn-primary" type="submit" id="addProduct">Add Product</button>
+            </div>
+        </div>
+    </form>
+</div>
+</div>
+</section>
+</body>
+
+</html>  -->
