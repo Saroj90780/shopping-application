@@ -49,8 +49,7 @@
                 const bankOffer = document.getElementById('bankOffer').checked;
                 const axisOffer = document.getElementById('axisOffer').checked;
                 const hdfcOffer = document.getElementById('hdfcOffer').checked
-                const specialOffer = document.getElementById('specialOffer').checked.value;
-                console.log(bankOffer.value)
+                const specialOffer = document.getElementById('specialOffer').checked;
 
 
                 fetch('http://127.0.0.1:4001/submit', {
@@ -63,9 +62,13 @@
                     .then(response => response.json())
                     .then(product => {
                         console.log(product)
-                        addProductToList(product); // Add product to the list immediately
+                        addProductToList(product);
+                        //contentShow('Add-Products')
+                        location.reload(); 
+                        console.log("kumar padhi")// Add product to the list immediately
                     });
-                productForm.reset();
+                // productForm.reset();
+                // contentShow('Add-Products')
 
             });
         }
